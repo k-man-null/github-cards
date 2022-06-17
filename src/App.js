@@ -7,9 +7,9 @@ const testData = [
 ];
 
 const CardList = (props) => (
- 
+
   <div>
-    {props.profiles.map( px => <Card {...px }/> )}
+    {props.profiles.map(px => <Card {...px} />)}
   </div>
 )
 
@@ -18,7 +18,7 @@ class Card extends React.Component {
     const profile = this.props;
     return (
       <div className="github-profile">
-        <img src= {profile.avatar_url}/>
+        <img src={profile.avatar_url} />
         <div className="info">
           <div className="name">{profile.name}</div>
           <div className="company">{profile.company}</div>
@@ -29,10 +29,26 @@ class Card extends React.Component {
 }
 
 class Form extends React.Component {
+
+  state = { userName : ''}
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(
+      this.state.userName
+    )
+
+  };
+
   render() {
     return (
-      <form action="">
-        <input type="text" placeholder="Github Username" />
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={ this.state.userName }
+          onChange={event => this.setState({ userName: event.target.value })}
+          placeholder="Github Username"
+          required
+        />
         <button> Add card</button>
       </form>
     )
@@ -40,12 +56,24 @@ class Form extends React.Component {
 }
 
 class App extends React.Component {
+  //replacing with class fields.
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     profiles: testData
+  //   }
+  // }
+  state = {
+    profiles: testData
+  }
+
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>
         <Form />
-        <CardList profiles={testData} />
+        <CardList profiles={this.state.profiles} />
       </div>
     )
   }
