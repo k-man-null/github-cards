@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header {
+  text-align: center;
+  font-size: 40px;
+  margin: 2%;
+}
+
+.github-profile {
+  padding-left: 10%;
+}
